@@ -3,7 +3,7 @@ import { resolve } from "path";
 const confBase = {
   entry: {
     // resolve(__dirname, "../../", "src/renderer/renderer.ts"),
-    renderer: "./src/renderer/renderer.ts",
+    renderer: "./src/renderer/renderer.tsx",
   },
   module: {
     rules: [
@@ -18,7 +18,7 @@ const confBase = {
     filename: "[name].js",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".json"],
+    extensions: [".js", ".ts", ".tsx", ".json"], // ".js":Module not found: Error: Can't resolve 'object-assign'
   },
 };
 
