@@ -1,3 +1,4 @@
+import { spawn } from "child_process";
 import { resolve } from "path";
 import webpack from "webpack";
 import merge from "webpack-merge";
@@ -10,14 +11,23 @@ export default merge.smart(confBase, {
     // contentBase: resolve(__dirname, "../../", "dev"),
     hot: true,
     publicPath,
+    before() {
+      if (process.env.RENDERER_PRE) {
+        console.log("Luanching Main Process...");
+        spawn("npm", ["run", "dev:main"], {
+          env: process.env,
+          shell: true,
+          stdio: "inherit",
+        })
+          .on("close", (code) => process.exit(code))
+          .on("error", (err) => console.log(err));
+      }
+    },
   },
   // devtool: "inline-source-map",
   entry: {
     // resolve(__dirname, "../../", "src/renderer/renderer.ts"),
     renderer: [
-      "react-hot-loader/patch",
-      "webpack-dev-server/client?http://localhost:8080/",
-      "webpack/hot/only-dev-server",
       "./src/renderer/renderer.dev.tsx",
     ],
   },

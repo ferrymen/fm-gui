@@ -7,6 +7,7 @@
     "start": "run-p dev:renderer dev:main",
     "dev:main": "cross-env NODE_ENV=development ELECTRON_DISABLE_SECURITY_WARNINGS=true electron -r ts-node/register src/main/main.ts",
     "dev:renderer": "node -r ts-node/register node_modules/webpack-dev-server/bin/webpack-dev-server --no-inline --config build/renderer/webpack.conf.dev.ts",
+    "dev:renderer:pre": "cross-env RENDERER_PRE=true npm run dev:renderer",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
