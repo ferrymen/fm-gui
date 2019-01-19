@@ -6,6 +6,7 @@ let mainWindow: BrowserWindow | null;
 const createWindow = async () => {
   mainWindow = new BrowserWindow({
     height: 600,
+    webPreferences: { nodeIntegration: true }, // Electron Deprecation Warning
     width: 800,
   });
 
