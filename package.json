@@ -4,12 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron src/main/main.js",
+    "start": "cross-env NODE_ENV=development npm run dev:main",
+    "dev:main": "electron -r ts-node/register src/main/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "electron": "^4.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.4"
   }
 }
