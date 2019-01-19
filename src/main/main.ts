@@ -11,7 +11,7 @@ const createWindow = async () => {
   });
 
   if (process.env.NODE_ENV === "development") {
-    mainWindow.loadURL(`file://${resolve(__dirname, "../../", "static")}/index.html`);
+    mainWindow.loadURL(`file://${resolve(__dirname, "..", "renderer")}/index.html`);
   } else {
     mainWindow.loadURL(`file://${__dirname}/index.html`);
   }
