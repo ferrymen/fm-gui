@@ -1,0 +1,42 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "fm-gui current ts file",
+      "args": ["${relativeFile}"],
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "env": {
+        "TS_NODE_DISABLE_WARNINGS": "true"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "fm-gui main process",
+      "env": {
+        "NODE_ENV": "development",
+        "ELECTRON_DISABLE_SECURITY_WARNINGS": "true"
+      },
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+      },
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register",
+        "${workspaceFolder}/src/main/main.ts"
+      ]
+    }
+  ]
+}
