@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development npm run dev:main",
+    "start": "cross-env NODE_ENV=development ELECTRON_DISABLE_SECURITY_WARNINGS=true npm run dev:main",
     "dev:main": "electron -r ts-node/register src/main/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
