@@ -95,6 +95,13 @@ export default new Promise((resolve, reject) => {
       const publicPath = `${process.env.PROTOCOL}://${process.env.HOST}:${process.env.PORT}/`;
       confDev.devServer!.publicPath = confDev.output!.publicPath = process.env.PUBLIC_PATH  = publicPath;
       process.env.ENTRY = shareConf.base.entry;
+      // (confDev.entry as any)[shareConf.base.entry] = [].concat([
+      //   `webpack-dev-server/client?${publicPath}` as never,
+      //   "webpack/hot/only-dev-server" as never,
+      //   ...(confDev.entry as any)[shareConf.base.entry],
+      // ]);
+      (confDev.entry as any)[shareConf.base.entry].unshift("webpack/hot/only-dev-server");
+      (confDev.entry as any)[shareConf.base.entry].unshift(`webpack-dev-server/client?${publicPath}`);
 
       confDev.plugins!.push(new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: {
