@@ -3,7 +3,17 @@ import { resolve } from "path";
 
 let mainWindow: BrowserWindow | null;
 
-const createWindow = async () => {
+const installElectronDevTool = async () => {
+  const installer = require("electron-devtools-installer");
+  const isUpgradeExtensions = !!process.env.IS_UPGRADE_EXTENSIONS;
+  const extensions = ["REACT_DEVELOPER_TOOLS", "REDUX_DEVTOOLS"];
+
+  return Promise.all(
+    extensions.map((extension) => installer.default(installer[extension], isUpgradeExtensions)),
+  ).catch(console.log);
+};
+
+const createWindow = () => {
   mainWindow = new BrowserWindow({
     height: 600,
     webPreferences: { nodeIntegration: true }, // Electron Deprecation Warning
@@ -23,7 +33,13 @@ const createWindow = async () => {
   });
 };
 
-app.on("ready", createWindow);
+app.on("ready", async () => {
+  if (process.env.NODE_ENV === "development") {
+    await installElectronDevTool();
+  }
+
+  createWindow();
+});
 
 app.on("activate", () => {
   if (mainWindow === null) {
