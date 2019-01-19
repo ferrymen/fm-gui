@@ -11,6 +11,7 @@ export default merge.smart(confBase, {
     hot: true,
     publicPath,
   },
+  // devtool: "inline-source-map",
   entry: {
     // resolve(__dirname, "../../", "src/renderer/renderer.ts"),
     renderer: [
