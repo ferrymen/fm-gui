@@ -5,9 +5,14 @@
   "tasks": [
     {
       "label": "task:renderer",
+      // "type": "shell",
+      // "command": "npm run dev:renderer",
       "type": "npm",
       "script": "dev:renderer",
       "isBackground": true,
+      "presentation": {
+				"reveal": "never"
+      },
       "problemMatcher": [
         {
           "owner": "webpack-dev-server",
@@ -24,7 +29,7 @@
               "beginsPattern": "Project is running at",
               "endsPattern": "Compiled successfully."
           }
-      }
+        }
       ]
     }
   ]

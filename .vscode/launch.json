@@ -36,12 +36,29 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "fm-gui main process",
+      "name": "launch dev:renderer",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run-script",
+        "dev:renderer"
+      ],
+      "timeout": 600000
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "debug main process",
       "env": {
         "NODE_ENV": "development",
-        "ELECTRON_DISABLE_SECURITY_WARNINGS": "true"
+        "ELECTRON_DISABLE_SECURITY_WARNINGS": "true",
+        "PROTOCOL": "http",
+        "HOST": "localhost",
+        "PORT": "8080",
+        "PUBLIC_PATH": "http://localhost:8080/",
+        "ENTRY": "renderer"
       },
-      "preLaunchTask": "task:renderer",
+      // "preLaunchTask": "task:renderer",
+      // "postDebugTask": "task:renderer",
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
       "windows": {
         "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
@@ -56,7 +73,7 @@
     {
       "type": "chrome",
       "request": "attach",
-      "name": "fm-gui renderer process",
+      "name": "debug renderer process",
       "port": 9223,
       "webRoot": "${workspaceFolder}"
     },
@@ -64,7 +81,7 @@
   "compounds": [
     {
       "name": "fm-gui renderer/main process",
-      "configurations": ["fm-gui renderer process", "fm-gui main process"]
+      "configurations": ["launch dev:renderer", "debug renderer process", "debug main process"]
     }
   ]
 }
