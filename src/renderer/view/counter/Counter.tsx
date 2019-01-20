@@ -1,17 +1,38 @@
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import Counter from "../../component/counter/counter";
-import { actionCreators } from "../../redux/action/counter";
-import { IRootState } from "../../redux/reducer";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-function mapStateToProps(state: IRootState) {
-  return {
-    counter: state.Counter.counter,
-  };
+interface IProp {
+  increment: () => void;
+  incrementOdd: () => void;
+  incrementAsync: () => void;
+  decrement: () => void;
+  counter: number;
 }
 
-function mapDispatchToProps(dispatch: any) {
-  return bindActionCreators(actionCreators, dispatch);
-}
+export default class ViewCounter extends Component<IProp> {
+  public render() {
+    const {
+      increment,
+      incrementOdd,
+      incrementAsync,
+      decrement,
+      counter,
+    } = this.props;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+    return (
+      <div>
+        <div>
+          <Link to="/">
+            <button>返回</button>
+          </Link>
+        </div>
+        <hr />
+        <div>
+          <button onClick={increment}>增加</button>
+          <button onClick={decrement}>减少</button>
+        </div>
+        <div>{counter}</div>
+      </div>
+    );
+  }
+}

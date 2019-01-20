@@ -8,7 +8,7 @@ const intialState = {
   counter: 0,
 };
 
-export const counterReducer = (
+export const reducerCounter = (
   state: ICounterState = intialState,
   action: RootActions,
 ) => {

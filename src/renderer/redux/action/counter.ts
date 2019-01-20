@@ -1,6 +1,6 @@
 import { IRootState } from "../reducer";
 
-export type counterAction = IIncrement | IDncrement;
+export type CounterAction = IIncrement | IDncrement;
 
 interface IIncrement {
   type: string;
@@ -20,7 +20,7 @@ const decrement = () => ({
 
 const incrementOdd = () => {
   return (
-    dispatch: (action: counterAction) => void,
+    dispatch: (action: CounterAction) => void,
     getState: () => IRootState,
   ) => {
     const { counter } = getState().Counter;
@@ -35,7 +35,7 @@ const incrementOdd = () => {
 
 const incrementAsync = (delay: number = 1000) => {
   return (
-    dispatch: (action: counterAction) => void,
+    dispatch: (action: CounterAction) => void,
   ) => {
     setTimeout(() => {
       dispatch(increment());
