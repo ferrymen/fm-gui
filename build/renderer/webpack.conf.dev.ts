@@ -60,6 +60,7 @@ const confDev: Configuration = merge.smart(confBase, {
             babelrc: false,
             cacheDirectory: true,
             plugins: [
+              // "add-module-exports",
               "react-hot-loader/babel",
             ],
             presets: [

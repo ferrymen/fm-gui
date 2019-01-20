@@ -12,3 +12,17 @@ render(
   </Root>,
   document.getElementById("app"),
 );
+
+// react Ignored an update to unaccepted module
+if (module.hot) {
+  module.hot.accept("./view/root/Root", () => {
+    const RootHot = require("./view/root/Root").default;
+
+    render(
+      <RootHot store={store} history={Store.history}>
+        <App></App>
+      </RootHot>,
+      document.getElementById("app"),
+    );
+  })
+}

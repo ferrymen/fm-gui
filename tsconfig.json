@@ -63,5 +63,9 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  // "externalTranspiler": {
+  //   "name": "babel",
+  //   "plugins": ["add-module-exports3"]
+  // }
 }
