@@ -35,6 +35,10 @@ const createWindow = () => {
 
 app.on("ready", async () => {
   if (process.env.NODE_ENV === "development") {
+    // Add Devtron: https://github.com/electron/devtron/issues/109
+    // require("devtron").install();
+    require("electron-debug")();
+
     await installElectronDevTool();
   }
 
