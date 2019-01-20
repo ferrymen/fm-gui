@@ -1,3 +1,4 @@
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { resolve } from "path";
 
 const confBase = {
@@ -19,6 +20,11 @@ const confBase = {
   output: {
     filename: "[name].js",
   },
+  plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      tsconfig: resolve(__dirname, "../../", "src/renderer/tsconfig.json"),
+    }),
+  ],
   resolve: {
     extensions: [
       ".ts",

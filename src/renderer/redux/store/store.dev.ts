@@ -1,9 +1,9 @@
 import { createHashHistory } from "history";
 import { routerActions, routerMiddleware } from "react-router-redux";
-import { applyMiddleware, createStore, Reducer } from "redux";
+import { applyMiddleware, createStore, DeepPartial, Reducer } from "redux";
 import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
-import { IRootState, rootReducer } from "../reducer";
+import { IStateRoot, rootReducer } from "../reducer";
 
 interface IDebugWindow extends Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: (args: any) => any;
@@ -11,7 +11,7 @@ interface IDebugWindow extends Window {
 
 const history = createHashHistory();
 
-function configureStore(initialState?: IRootState) {
+function configureStore(initialState?: DeepPartial<IStateRoot>) {
   const middlewares = [];
   const enhancers = [];
 

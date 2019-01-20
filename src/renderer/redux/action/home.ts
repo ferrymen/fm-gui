@@ -1,18 +1,21 @@
-import { IProject } from "../../types";
-import { IActionHome } from "../../types";
-import { IRootState } from "../reducer";
+export type TActionHome = IAddProject | IRemoveProject;
 
-const addProject = (action: IActionHome): IActionHome => ({
+interface IAddProject {
+  payload: any;
+  type: string;
+}
+
+interface IRemoveProject {
+  payload: any;
+  type: string;
+}
+
+export const addProject = (action: TActionHome): TActionHome => ({
   payload: action.payload,
   type: "HOME_ADD_PROJECT",
 });
 
-const removeProject = (action: IActionHome): IActionHome => ({
+export const removeProject = (action: TActionHome): TActionHome => ({
   payload: action.payload,
   type: "HOME_REMOVE_PROJECT",
 });
-
-export const ActionCreatorHome = {
-  addProject,
-  removeProject,
-};

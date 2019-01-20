@@ -1,8 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
 import App from "./App.dev";
-import Root from "./view/root/Root";
 import Store from "./redux/store/store.dev";
+import Root from "./view/root/Root";
 
 const store = Store.configureStore();
 
@@ -14,8 +14,8 @@ render(
 );
 
 // react Ignored an update to unaccepted module
-if (module.hot) {
-  module.hot.accept("./view/root/Root", () => {
+if ((module as any).hot) {
+  (module as any).hot.accept("./view/root/Root", () => {
     const RootHot = require("./view/root/Root").default;
 
     render(
@@ -24,5 +24,5 @@ if (module.hot) {
       </RootHot>,
       document.getElementById("app"),
     );
-  })
+  });
 }

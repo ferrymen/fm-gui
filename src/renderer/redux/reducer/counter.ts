@@ -1,4 +1,4 @@
-import { RootActions } from "../action";
+import { TActionCounter } from "../action/counter";
 
 export interface ICounterState {
   counter: number;
@@ -10,7 +10,7 @@ const intialState = {
 
 export const reducerCounter = (
   state: ICounterState = intialState,
-  action: RootActions,
+  action: TActionCounter,
 ) => {
   switch (action.type) {
     case "COUNTER_INCREMENT":

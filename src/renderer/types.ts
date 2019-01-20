@@ -1,10 +1,9 @@
 export interface IStateHome {
-  projects: number;
+  projects: IProject[];
 }
 
-export interface IActionHome {
-  payload: IProject;
-  type?: string;
+export interface IStateCounter {
+  counter: number;
 }
 
 export interface IProject {

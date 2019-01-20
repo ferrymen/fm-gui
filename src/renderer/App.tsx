@@ -1,10 +1,6 @@
 import React, { Component, ReactNode } from "react";
 
-interface IProps {
-  children: ReactNode;
-}
-
-export default class App extends Component<IProps> {
+export default class App extends Component {
   public render() {
     return <div>{this.props.children}</div>;
   }

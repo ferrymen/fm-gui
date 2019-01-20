@@ -1,13 +1,13 @@
-import { IHomeState } from "../../types";
-import { RootActions } from "../action";
+import { IStateHome } from "../../types";
+import { TActionHome } from "../action/home";
 
 const intialState = {
   projects: [],
 };
 
 export const reducerHome = (
-  state: IHomeState = intialState,
-  action: RootActions,
+  state: IStateHome = intialState,
+  action: TActionHome,
 ) => {
   switch (action.type) {
     case "HOME_ADD_PROJECT":

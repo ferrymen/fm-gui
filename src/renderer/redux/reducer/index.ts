@@ -1,11 +1,11 @@
 import { routerReducer, RouterState } from "react-router-redux";
 import { combineReducers } from "redux";
-import { IStateHome } from "../../types";
+import { IStateCounter, IStateHome } from "../../types";
 import { reducerCounter } from "./counter";
 import { reducerHome } from "./home";
 
-export interface IRootState {
-  Counter: ICounterState;
+export interface IStateRoot {
+  Counter: IStateCounter;
   Home: IStateHome;
   Router: RouterState; // if no, don't jump
 }
