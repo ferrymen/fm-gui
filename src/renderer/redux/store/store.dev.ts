@@ -38,7 +38,15 @@ function configureStore(initialState?: IRootState) {
 
   const enhancer = composeEnhancers(...enhancers);
 
-  return createStore(rootReducer as Reducer<any>, initialState, enhancer);
+  const store = createStore(rootReducer as Reducer<any>, initialState, enhancer);
+
+  // if (module.hot) {
+  //   module.hot.accept("../reducer", () => {
+  //     store.replaceReducer(require("../reducer").default);
+  //   });
+  // }
+
+  return store;
 }
 
 export default {
