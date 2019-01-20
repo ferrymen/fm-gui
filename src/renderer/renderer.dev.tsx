@@ -7,7 +7,7 @@ import Store from "./redux/store/store.dev";
 const store = Store.configureStore();
 
 render(
-  <Root store={store}>
+  <Root store={store} history={Store.history}>
     <App></App>
   </Root>,
   document.getElementById("app"),

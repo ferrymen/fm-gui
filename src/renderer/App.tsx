@@ -1,8 +1,11 @@
-import React from "react";
-import Counter from "./view/counter/Counter";
+import React, { Component, ReactNode } from "react";
 
-const App = () => (
-  <Counter></Counter>
-);
+interface IProps {
+  children: ReactNode;
+}
 
-export default App;
+export default class App extends Component<IProps> {
+  public render() {
+    return <div>{this.props.children}</div>;
+  }
+}

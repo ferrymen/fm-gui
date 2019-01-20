@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 interface IProps {
   increment: () => void;
@@ -20,6 +21,12 @@ export default class Counter extends Component<IProps> {
 
     return (
       <div>
+        <div>
+          <Link to="/">
+            <button>返回</button>
+          </Link>
+        </div>
+        <hr />
         <div>
           <button onClick={increment}>增加</button>
           <button onClick={decrement}>减少</button>
