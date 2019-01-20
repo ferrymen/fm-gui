@@ -1,22 +1,33 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { decrement, increment } from "../../redux/action/counter";
 
-interface IProp {
-  increment: () => void;
-  incrementOdd: () => void;
-  incrementAsync: () => void;
-  decrement: () => void;
+interface IProps {
   counter: number;
+  decrement: () => void;
+  increment: () => void;
 }
 
-export default class ViewCounter extends Component<IProp> {
+@connect(
+  (state) => (
+    {
+      counter: state.Counter.counter,
+    }
+  ),
+  (dispatch) => (
+    {
+      decrementDo: () => dispatch(decrement()),
+      incrementDo: () => dispatch(increment()),
+    }
+  ),
+)
+export default class ViewCounter extends Component<IProps> {
   public render() {
     const {
-      increment,
-      incrementOdd,
-      incrementAsync,
-      decrement,
       counter,
+      decrementDo,
+      incrementDo,
     } = this.props;
 
     return (
@@ -28,8 +39,8 @@ export default class ViewCounter extends Component<IProp> {
         </div>
         <hr />
         <div>
-          <button onClick={increment}>增加</button>
-          <button onClick={decrement}>减少</button>
+          <button onClick={incrementDo}>增加</button>
+          <button onClick={decrementDo}>减少</button>
         </div>
         <div>{counter}</div>
       </div>

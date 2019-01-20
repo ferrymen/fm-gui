@@ -1,12 +1,20 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { IProject } from "../../types";
 
-interface IProp {
+interface IProps {
   projects: IProject[];
 }
 
-export default class ViewHome extends Component<IProp> {
+@connect(
+  (state) => (
+    {
+      projects: state.Home.projects,
+    }
+  ),
+)
+export default class ViewHome extends Component<IProps> {
   public render() {
     const {
       projects,

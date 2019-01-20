@@ -10,15 +10,15 @@ interface IDncrement {
   type: string;
 }
 
-const increment = () => ({
+export const increment = () => ({
   type: "COUNTER_INCREMENT",
 });
 
-const decrement = () => ({
+export const decrement = () => ({
   type: "COUNTER_DECREMENT",
 });
 
-const incrementOdd = () => {
+export const incrementOdd = () => {
   return (
     dispatch: (action: CounterAction) => void,
     getState: () => IRootState,
@@ -33,7 +33,7 @@ const incrementOdd = () => {
   };
 };
 
-const incrementAsync = (delay: number = 1000) => {
+export const incrementAsync = (delay: number = 1000) => {
   return (
     dispatch: (action: CounterAction) => void,
   ) => {
@@ -41,11 +41,4 @@ const incrementAsync = (delay: number = 1000) => {
       dispatch(increment());
     }, delay);
   };
-};
-
-export const actionCreators = {
-  decrement,
-  increment,
-  incrementAsync,
-  incrementOdd,
 };

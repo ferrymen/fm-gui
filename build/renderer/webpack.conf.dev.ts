@@ -62,6 +62,7 @@ const confDev: Configuration = merge.smart(confBase, {
             plugins: [
               // "add-module-exports",
               "react-hot-loader/babel",
+              ["@babel/plugin-proposal-decorators", { legacy: true }],
             ],
             presets: [
               [
