@@ -1,0 +1,21 @@
+{
+  "plugins": [
+    // "add-module-exports",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+  ],
+  "presets": [
+    [
+      "@babel/preset-env",
+      { "targets": { "browsers": "last 2 versions" } }, // or whatever your project requires
+    ],
+    "@babel/preset-typescript",
+    "@babel/preset-react",
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel",
+      ]
+    }
+  }
+}

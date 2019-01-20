@@ -7,6 +7,9 @@ interface IProps {
   projects: IProject[];
 }
 
+// no hot reload
+// https://github.com/gaearon/react-hot-loader/issues/1120
+// https://github.com/reduxjs/react-redux/pull/1137
 @connect(
   (state) => (
     {

@@ -27,7 +27,7 @@ const createNotifierCallback = () => {
 const confDev: Configuration = merge.smart(confBase, {
   devServer: {
     // contentBase: resolve(__dirname, "../../", "dev"),
-    hot: true,
+    // hot: true, // https://github.com/reduxjs/react-redux/pull/1137
     before() {
       if (process.env.RENDERER_PRE) {
         console.log("Luanching Main Process...");
@@ -49,34 +49,6 @@ const confDev: Configuration = merge.smart(confBase, {
     ],
   },
   mode: "development",
-  module: {
-    rules: [
-      {
-        exclude: /node_modules/,
-        test: /\.(t|j)sx?$/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            babelrc: false,
-            cacheDirectory: true,
-            plugins: [
-              // "add-module-exports",
-              "react-hot-loader/babel",
-              ["@babel/plugin-proposal-decorators", { legacy: true }],
-            ],
-            presets: [
-              [
-                "@babel/preset-env",
-                { targets: { browsers: "last 2 versions" } }, // or whatever your project requires
-              ],
-              "@babel/preset-typescript",
-              "@babel/preset-react",
-            ],
-          },
-        },
-      },
-    ],
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // [HMR] Hot Module Replacement is disabled
   ],

@@ -5,6 +5,17 @@ const confBase = {
     // resolve(__dirname, "../../", "src/renderer/renderer.ts"),
     renderer: "./src/renderer/renderer.tsx",
   },
+  module: {
+    rules: [
+      {
+        exclude: /node_modules/,
+        test: /\.(t|j)sx?$/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+    ],
+  },
   output: {
     filename: "[name].js",
   },
