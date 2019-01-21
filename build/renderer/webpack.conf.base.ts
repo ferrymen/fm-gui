@@ -2,6 +2,7 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { resolve } from "path";
 
 const confBase = {
+  context: resolve(__dirname, "../../", "src/renderer"),
   entry: {
     // resolve(__dirname, "../../", "src/renderer/renderer.ts"),
     renderer: "./src/renderer/renderer.tsx",
@@ -22,7 +23,7 @@ const confBase = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      tsconfig: resolve(__dirname, "../../", "src/renderer/tsconfig.json"),
+      // tsconfig: resolve(__dirname, "../../", "src/renderer/tsconfig.json"),
     }),
   ],
   resolve: {

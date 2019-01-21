@@ -45,7 +45,7 @@ const confDev: Configuration = merge.smart(confBase, {
   entry: {
     // resolve(__dirname, "../../", "src/renderer/renderer.ts"),
     [shareConf.base.entry]: [
-      "./src/renderer/renderer.dev.tsx",
+      "./renderer.dev.tsx",
     ],
   },
   mode: "development",
