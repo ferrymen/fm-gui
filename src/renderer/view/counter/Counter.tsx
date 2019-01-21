@@ -5,8 +5,8 @@ import { decrement, increment } from "../../redux/action/counter";
 
 interface IProps {
   counter: number;
-  decrement: () => void;
-  increment: () => void;
+  decrementDo: () => void;
+  incrementDo: () => void;
 }
 
 @connect(
