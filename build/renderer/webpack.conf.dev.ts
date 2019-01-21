@@ -1,6 +1,7 @@
 import { spawn } from "child_process";
 import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
 import nodeNotifier from "node-notifier";
+import path from "path";
 import portfinder from "portfinder";
 import webpack, { Configuration } from "webpack";
 import merge from "webpack-merge";
@@ -26,7 +27,8 @@ const createNotifierCallback = () => {
 
 const confDev: Configuration = merge.smart(confBase, {
   devServer: {
-    // contentBase: resolve(__dirname, "../../", "dev"),
+    // clientLogLevel: "warning", // [WDS] App hot update...
+    contentBase: path.resolve(__dirname, "../../", "src/renderer"),
     // hot: true, // https://github.com/reduxjs/react-redux/pull/1137
     before() {
       if (process.env.RENDERER_PRE) {
@@ -40,6 +42,13 @@ const confDev: Configuration = merge.smart(confBase, {
           .on("error", (err) => console.log(err));
       }
     },
+    // contentBase: sourcePath,
+    historyApiFallback: {
+      disableDotRule: true,
+    },
+    hot: true,
+    inline: true,
+    stats: "minimal",
   },
   // devtool: "inline-source-map",
   entry: {
