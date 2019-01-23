@@ -13,7 +13,7 @@
       const scripts = [];
 
       if (process.env.NODE_ENV === 'development') {
-        scripts.push(`${process.env.PUBLIC_PATH}/${process.env.ENTRY}.js`);
+        scripts.push(`${process.env.PUBLIC_PATH}${process.env.ENTRY}.js`);
       }
 
       document.write(
