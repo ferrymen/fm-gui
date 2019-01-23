@@ -2,6 +2,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "jsx": "react",
-    "lib": ["dom", "es2015"],
+    "lib": ["dom", "es2015", "es2016.array.include"],
   },
 }

@@ -1,34 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { decrement, increment } from "../../redux/action/counter";
+import { IRootState, NRootState } from "../../reducer";
+import { OCounterAction, NCounterAction } from "../../action";
+import { Dispatch, bindActionCreators } from "redux";
+import { omit } from "../../utils";
 
-interface IProps {
-  counter: number;
-  decrementDo: () => void;
-  incrementDo: () => void;
+export interface IProps {
+  counter: NRootState.TCounterState;
+  actions: OCounterAction;
 }
 
 @connect(
-  (state) => (
-    {
-      counter: state.Counter.counter,
-    }
-  ),
-  (dispatch) => (
-    {
-      decrementDo: () => dispatch(decrement()),
-      incrementDo: () => dispatch(increment()),
-    }
-  ),
+  (state: IRootState, ownProps): Pick<IProps, "counter"> => ({
+    counter: state.counter
+  }),
+  (dispatch: Dispatch): Pick<IProps, "actions"> => ({
+    actions: bindActionCreators(omit(NCounterAction, "EType"), dispatch)
+  })
 )
 export default class ViewCounter extends Component<IProps> {
   public render() {
-    const {
-      counter,
-      decrementDo,
-      incrementDo,
-    } = this.props;
+    const { counter, actions } = this.props;
 
     return (
       <div>
@@ -39,10 +32,10 @@ export default class ViewCounter extends Component<IProps> {
         </div>
         <hr />
         <div>
-          <button onClick={incrementDo}>增加</button>
-          <button onClick={decrementDo}>减少</button>
+          <button onClick={actions.increment}>增加</button>
+          <button onClick={actions.decrement}>减少</button>
         </div>
-        <div>{counter}</div>
+        <div>{counter.count}</div>
       </div>
     );
   }

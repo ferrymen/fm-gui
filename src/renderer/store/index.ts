@@ -4,7 +4,7 @@ import { applyMiddleware, compose, createStore, DeepPartial, Reducer } from "red
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
-import { IStateRoot, rootReducer } from "../reducer";
+import { rootReducer, IRootState } from "../reducer";
 
 // interface IDebugWindow extends Window {
 //   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: (args: any) => any;
@@ -12,7 +12,7 @@ import { IStateRoot, rootReducer } from "../reducer";
 
 export const history = createHashHistory();
 
-export function configureStore(initialState?: DeepPartial<IStateRoot>) {
+export function configureStore(initialState?: DeepPartial<IRootState>) {
   const middlewares = [];
 
   middlewares.push(thunk);

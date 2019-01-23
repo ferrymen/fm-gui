@@ -13,7 +13,7 @@ const confBase = {
         exclude: /node_modules/,
         test: /\.(t|j)sx?$/,
         use: {
-          loader: "babel-loader",
+          loader: "ts-loader",
         },
       },
     ],
