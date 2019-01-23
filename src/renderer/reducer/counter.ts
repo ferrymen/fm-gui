@@ -39,7 +39,6 @@ export const counterReducer = handleActions<
       };
     },
     [NCounterAction.EType.INCREMENT]: state => {
-      console.log(state);
       return {
         ...state,
         count: state.count + 1
