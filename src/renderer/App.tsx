@@ -1,17 +1,16 @@
 import React from "react";
-import { Route, Switch } from "react-router";
-import ViewCounter from "./view/counter/Counter";
-import ViewHome from "./view/home/Home";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "react-router-redux";
+import Routes from "./routes";
 
-/**
- * Order required
- * "/counter"|"/"
- */
-const App = () => (
-  <Switch>
-    <Route path="/counter" component={ViewCounter} />
-    <Route path="/" component={ViewHome} />
-  </Switch>
+import { configureStore, history } from "./redux/store/store";
+
+const store = configureStore();
+
+export default () => (
+  <Provider store={store}>
+    <ConnectedRouter store={store} history={history}>
+      <Routes />
+    </ConnectedRouter>
+  </Provider>
 );
-
-export default App;
