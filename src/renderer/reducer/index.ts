@@ -3,11 +3,13 @@ import { combineReducers } from "redux";
 import { IRootState, NRootState } from "./root";
 import { todoReducer } from "./todos";
 import { counterReducer } from "./counter";
+import { themeReducer } from "./theme";
 
 export { IRootState, NRootState };
 
 export const rootReducer = combineReducers<IRootState>({
   router: routerReducer,
   todos: todoReducer as any,
-  counter: counterReducer as any
+  counter: counterReducer as any,
+  theme: themeReducer as any
 });
