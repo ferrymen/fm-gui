@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { ICounterModel, ITodoModel } from "../../model";
 import { IRootState } from "../../reducer";
-import { MainLayout } from "../../ui";
+import { Layout } from "../../ui";
 
 export namespace NHome {
   export interface IProps {
@@ -11,8 +11,8 @@ export namespace NHome {
   }
 }
 
-const Menu = () => {
-  return <div>Menu</div>;
+const Header = () => {
+  return <div>Header</div>;
 }
 
 const Footer = () => {
@@ -29,15 +29,14 @@ export default class ViewHome extends Component<NHome.IProps> {
   public render() {
     return (
       <div>
-        <MainLayout menu={Menu()} footer={(Footer())}>
-          kkk
-        </MainLayout>
-        <h2>Home</h2>
+        <Layout>
+        </Layout>
+        {/* <h2>Home</h2>
         We are using node {process.versions.node}, Chrome{" "}
         {process.versions.chrome}, and Electron {process.versions.electron}.
         <br />
         <hr />
-        <Link to="/counter">to Counter</Link>
+        <Link to="/counter">to Counter</Link> */}
       </div>
     );
   }
