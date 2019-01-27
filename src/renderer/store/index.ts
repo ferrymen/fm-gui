@@ -1,6 +1,6 @@
 import { createHashHistory } from "history";
 import { routerActions, routerMiddleware } from "react-router-redux";
-import { applyMiddleware, compose, createStore, DeepPartial, Reducer } from "redux";
+import { applyMiddleware, compose, createStore, DeepPartial, Reducer, Store } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
@@ -37,7 +37,7 @@ export function configureStore(initialState?: DeepPartial<IRootState>) {
   middlewares.push(logger);
 
   // tslint:disable-next-line:max-line-length
-  const store = createStore(rootReducer as Reducer<any>, initialState, composeEnhancers(applyMiddleware(...middlewares)));
+  const store: Store<{}> = createStore(rootReducer as Reducer<any>, initialState, composeEnhancers(applyMiddleware(...middlewares)));
 
   // if (module.hot) {
   //   module.hot.accept("../reducer", () => {
