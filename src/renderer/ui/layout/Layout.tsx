@@ -9,17 +9,17 @@ interface ILayoutProps {
 
 const LayoutBase: SFC<ILayoutProps> = props => {
   return (
-    <SplitPane
-      split="vertical"
-      minSize={50}
-      maxSize={300}
-      defaultSize={100}
-      className="primary"
-    >
-      <div>min: 50px, max: 300px</div>
-      <SplitPane split="horizontal">
-        <div>default min: 50px</div>
-        <div />
+    <SplitPane split="vertical" defaultSize="20%" className="primary" >
+      <div>left</div>
+      <SplitPane split="horizontal" maxSize={50}>
+        <div>header</div>
+        <SplitPane split="horizontal" defaultSize="80%">
+          <SplitPane split="vertical" defaultSize="80%">
+            <div>main</div>
+            <div>right</div>
+          </SplitPane>
+          <div>footer</div>
+        </SplitPane>
       </SplitPane>
     </SplitPane>
   );

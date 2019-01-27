@@ -52,7 +52,7 @@
         "run-script",
         "dev:renderer"
       ],
-      "timeout": 600000
+      "timeout": 600000000000
     },
     {
       "type": "node",
