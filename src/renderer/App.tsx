@@ -1,10 +1,10 @@
-import React, { Component, ReactNode } from "react";
+import React, { Component, ReactNode, Fragment } from "react";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 import Routes from "./routes";
 
 import { configureStore, history } from "./store";
-import { MuiThemeProvider, Paper, Tabs, Tab, withStyles } from "@material-ui/core";
+import { MuiThemeProvider, Paper, Tabs, Tab, withStyles, Typography } from "@material-ui/core";
 import { Storage, Favorite, PersonPin } from "@material-ui/icons";
 import { lightblue } from "./ui/theme";
 import { Layout } from "./ui";
@@ -29,6 +29,14 @@ const TabsVerticalItem = withStyles(theme => ({
     borderBottom: "2px solid tomato"
   }
 }))(Tab);
+
+const TabContainer = (props: any) => {
+  return (
+    <Typography component="div" style={{ padding: 8 * 1 }}>
+      {props.children}
+    </Typography>
+  );
+}
 
 interface IState {
   activeIndex: number;
@@ -70,7 +78,13 @@ export default class App extends Component<{}, IState> {
                   </TabsVertical>
                 </Paper>
               }
-              left={<div>left</div>}
+              left={
+                <Fragment>
+                  { activeIndex === 0 && <TabContainer>Project</TabContainer> }
+                  { activeIndex === 1 && <TabContainer>Favorite</TabContainer> }
+                  { activeIndex === 2 && <TabContainer>Profile</TabContainer> }
+                </Fragment>
+              }
               header={
                 <div>
                   <Link to="/">
