@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { IRootState, NRootState } from "../../reducer";
 import { OCounterAction, NCounterAction } from "../../action";
 import { Dispatch, bindActionCreators } from "redux";
@@ -25,12 +24,6 @@ export default class ViewCounter extends Component<IProps> {
 
     return (
       <div>
-        <div>
-          <Link to="/">
-            <button>返回</button>
-          </Link>
-        </div>
-        <hr />
         <div>
           <button onClick={actions.increment}>增加</button>
           <button onClick={actions.decrement}>减少</button>

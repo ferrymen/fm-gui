@@ -5,10 +5,15 @@ import { createStyle, ClassKey } from "./style";
 
 interface ILayoutProps {
   side: ReactNode;
+  left: ReactNode;
+  header: ReactNode;
+  main: ReactNode;
+  right: ReactNode;
+  footer: ReactNode;
 }
 
 const LayoutBase: SFC<ILayoutProps & WithStyles<ClassKey> & WithTheme> = props => {
-  const { classes, theme } = props;
+  const { classes, theme, side, left, header, main, right, footer } = props;
   // let size = undefined;
   // let dragging = false;
   // const handleDragStart = () => {
@@ -40,17 +45,17 @@ const LayoutBase: SFC<ILayoutProps & WithStyles<ClassKey> & WithTheme> = props =
       // onDragFinished={handleDragFinished}
       className="primary">
       <SplitPane split="vertical" maxSize={50}>
-        <Fragment>{props.side}</Fragment>
-        <div>left</div>
+        <Fragment>{side}</Fragment>
+        <Fragment>{left}</Fragment>
       </SplitPane>
       <SplitPane split="horizontal" maxSize={50}>
-        <div>header</div>
+        <Fragment>{header}</Fragment>
         <SplitPane split="horizontal" defaultSize="80%" maxSize={-50}>
           <SplitPane split="vertical" defaultSize="80%" maxSize={-50}>
-            <div>main</div>
-            <div>right</div>
+            <Fragment>{main}</Fragment>
+            <Fragment>{right}</Fragment>
           </SplitPane>
-          <div>footer</div>
+          <Fragment>{footer}</Fragment>
         </SplitPane>
       </SplitPane>
     </SplitPane>
