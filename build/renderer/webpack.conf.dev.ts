@@ -50,7 +50,7 @@ const confDev: Configuration = merge.smart(confBase, {
     inline: true,
     stats: "minimal"
   },
-  // devtool: "inline-source-map",
+  devtool: "inline-source-map",
   entry: {
     // resolve(__dirname, "../../", "src/renderer/renderer.ts"),
     [shareConf.base.entry]: ["./renderer.dev.tsx"]

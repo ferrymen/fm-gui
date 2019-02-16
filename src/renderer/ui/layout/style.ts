@@ -1,9 +1,9 @@
-import { StyleRules } from "@material-ui/core/styles";
+import { StyleRules, Theme } from "@material-ui/core/styles";
 import { CSSProperties } from "@material-ui/core/styles/withStyles";
 
-export type ClassKey = "@global";
+export type ClassKey = "@global" | "layout";
 
-export const createStyle = (): StyleRules<ClassKey> => {
+export const createStyle = (theme: Theme): StyleRules<ClassKey> => {
   const Resizer: CSSProperties = {
     background: "#000",
     opacity: 0.2,
@@ -28,6 +28,14 @@ export const createStyle = (): StyleRules<ClassKey> => {
       "&:hover": {
         borderTop: "5px solid rgba(0, 0, 0, 0.5)",
         borderBottom: "5px solid rgba(0, 0, 0, 0.5)"
+      },
+      "&::after": {
+        // content: " ",
+        // display: "block",
+        // height: "2px",
+        // width: "20px",
+        // borderTop: "1px solid rgba(0,0,0,0.2)",
+        // borderBottom: "1px solid rgba(0,0,0,0.2)"
       }
     },
     "&.vertical": {
@@ -49,9 +57,30 @@ export const createStyle = (): StyleRules<ClassKey> => {
     }
   };
 
+  const layout: CSSProperties = {
+    // background: theme.palette.background.default
+  };
+
   return {
     "@global": {
+      html: {
+        WebkitFontSmoothing: "antialiased",
+        // Antialiasing.
+        MozOsxFontSmoothing: "grayscale",
+        // Antialiasing.
+        // Change from `box-sizing: content-box` so that `width`
+        // is not affected by `padding` or `border`.
+        boxSizing: "border-box"
+      },
+      "*, *::before, *::after": {
+        boxSizing: "inherit"
+      },
+      body: {
+        margin: 0,
+        backgroundColor: theme.palette.background.default
+      },
       ".Resizer": Resizer
-    }
+    },
+    layout
   };
 };
