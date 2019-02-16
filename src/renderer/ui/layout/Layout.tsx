@@ -36,7 +36,7 @@ const LayoutBase: SFC<ILayoutProps & WithStyles<ClassKey> & WithTheme> = props =
   return (
     <SplitPane
       split="vertical"
-      minSize={100}
+      minSize={180}
       maxSize={300}
       defaultSize="20%"
       // size={dragging ? undefined : size}
