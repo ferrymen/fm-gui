@@ -2,41 +2,13 @@ import React, { Component, ReactNode, Fragment } from "react";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 import Routes from "./routes";
-
 import { configureStore, history } from "./store";
-import { MuiThemeProvider, Paper, Tabs, Tab, withStyles, Typography } from "@material-ui/core";
-import { Storage, Favorite, PersonPin } from "@material-ui/icons";
+import { MuiThemeProvider } from "@material-ui/core";
 import { lightblue } from "./ui/theme";
 import { Layout } from "./ui";
-import { Link } from "react-router-dom";
+import { Side, Left, Header, Right, Footer } from "./component/layout";
 
 const store = configureStore();
-
-const TabsVertical = withStyles(theme => ({
-  flexContainer: {
-    flexDirection: "column",
-    alignItems: "center",
-    // backgroundColor: theme.palette.primary.main
-  },
-  indicator: {
-    display: "none",
-  }
-}))(Tabs)
-
-const TabsVerticalItem = withStyles(theme => ({
-  selected: {
-    color: "tomato",
-    borderBottom: "2px solid tomato"
-  }
-}))(Tab);
-
-const TabContainer = (props: any) => {
-  return (
-    <Typography component="div" style={{ padding: 8 * 1 }}>
-      {props.children}
-    </Typography>
-  );
-}
 
 interface IState {
   activeIndex: number;
@@ -63,38 +35,12 @@ export default class App extends Component<{}, IState> {
         <MuiThemeProvider theme={lightblue}>
           <ConnectedRouter store={store} history={history}>
             <Layout
-              side={
-                <Paper square>
-                  <TabsVertical
-                    value={activeIndex}
-                    // variant="fullWidth"
-                    // indicatorColor="primary"
-                    textColor="primary"
-                    onChange={this.handleChange}
-                  >
-                    <TabsVerticalItem icon={<Storage />} />
-                    <TabsVerticalItem icon={<Favorite />} />
-                    <TabsVerticalItem icon={<PersonPin />} />
-                  </TabsVertical>
-                </Paper>
-              }
-              left={
-                <Fragment>
-                  { activeIndex === 0 && <TabContainer>Project</TabContainer> }
-                  { activeIndex === 1 && <TabContainer>Favorite</TabContainer> }
-                  { activeIndex === 2 && <TabContainer>Profile</TabContainer> }
-                </Fragment>
-              }
-              header={
-                <div>
-                  <Link to="/">
-                    <button>返回</button>
-                  </Link>
-                </div>
-              }
+              side={<Side activeIndex={activeIndex} handleChange={this.handleChange} />}
+              left={<Left activeIndex={activeIndex} />}
+              header={<Header />}
               main={<Routes />}
-              right={<div>right</div>}
-              footer={<div>footer</div>}
+              right={<Right />}
+              footer={<Footer />}
             >
             </Layout>
           </ConnectedRouter>
