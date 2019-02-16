@@ -13,7 +13,8 @@ const store = configureStore();
 export default () => (
   <Provider store={store}>
     <MuiThemeProvider theme={lightblue}>
-      <Layout>
+      <Layout
+        side={<div>side</div>}>
         <ConnectedRouter store={store} history={history}>
           <Routes />
         </ConnectedRouter>

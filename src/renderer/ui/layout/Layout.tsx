@@ -1,10 +1,10 @@
-import React, { SFC, ComponentType } from "react";
+import React, { SFC, ComponentType, Fragment, ReactNode } from "react";
 import SplitPane from "react-split-pane";
 import { withStyles, withTheme, WithStyles, WithTheme } from "@material-ui/core";
 import { createStyle, ClassKey } from "./style";
 
 interface ILayoutProps {
-  type?: string;
+  side: ReactNode;
 }
 
 const LayoutBase: SFC<ILayoutProps & WithStyles<ClassKey> & WithTheme> = props => {
@@ -40,7 +40,7 @@ const LayoutBase: SFC<ILayoutProps & WithStyles<ClassKey> & WithTheme> = props =
       // onDragFinished={handleDragFinished}
       className="primary">
       <SplitPane split="vertical" maxSize={50}>
-        <div>side</div>
+        <Fragment>{props.side}</Fragment>
         <div>left</div>
       </SplitPane>
       <SplitPane split="horizontal" maxSize={50}>
@@ -57,7 +57,8 @@ const LayoutBase: SFC<ILayoutProps & WithStyles<ClassKey> & WithTheme> = props =
   );
 };
 
-const LayoutWithStyle: any = withStyles(createStyle)(LayoutBase); // LayoutBase: props.classes
-const LayoutWithTheme: ComponentType<{}> = withTheme()(LayoutWithStyle); // LayoutBase: props.theme
+// const LayoutWithStyle: ComponentType<ILayoutProps> = withStyles(createStyle)(LayoutBase); // LayoutBase: props.classes
+const LayoutWithStyle = withStyles(createStyle)(LayoutBase); // LayoutBase: props.classes
+const LayoutWithTheme: ComponentType<ILayoutProps> = withTheme()(LayoutWithStyle); // LayoutBase: props.theme
 
-export const Layout: ComponentType<{}> = LayoutWithTheme;
+export const Layout: ComponentType<ILayoutProps> = LayoutWithTheme;
