@@ -3,13 +3,20 @@ import { TabContainer } from "../tab";
 import { Tooltip, Divider } from "@material-ui/core";
 import { Flex, Box } from "@rebass/grid";
 import { AddCircleOutline, FolderOpenOutlined } from "@material-ui/icons";
+import { injectIntl, InjectedIntl, defineMessages } from 'react-intl';
+
+// const messages = defineMessages({
+//   projectAdd: { id: "project.add" },
+//   projecImport: { id: "project.import" },
+// });
 
 interface IProps {
   activeIndex: number;
+  intl: InjectedIntl;
 }
 
-export const Left = (props: IProps) => {
-  const { activeIndex } = props;
+const LeftBase = (props: IProps) => {
+  const { activeIndex, intl } = props;
 
   return (
     <Fragment>
@@ -17,12 +24,15 @@ export const Left = (props: IProps) => {
         <TabContainer>
           <Flex justifyContent="flex-end" flexDirection="row">
             <Box px={1}>
-              <Tooltip title="New Project">
+              <Tooltip
+              title={intl.formatMessage({ id: "project.add" })}
+              // title={intl.formatMessage(messages.projectAdd)}
+              >
                 <AddCircleOutline />
               </Tooltip>
             </Box>
             <Box px={1}>
-              <Tooltip title="Import Project">
+              <Tooltip title={intl.formatMessage({ id: "project.import" })}>
                 <FolderOpenOutlined />
               </Tooltip>
             </Box>
@@ -35,3 +45,5 @@ export const Left = (props: IProps) => {
     </Fragment>
   )
 };
+
+export const Left = injectIntl(LeftBase);

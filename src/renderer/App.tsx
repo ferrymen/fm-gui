@@ -7,8 +7,17 @@ import { MuiThemeProvider } from "@material-ui/core";
 import { lightblue } from "./ui/theme";
 import { Layout } from "./ui";
 import { Side, Left, Header, Right, Footer } from "./component/layout";
+import { IntlProvider, addLocaleData } from "react-intl";
+import en from 'react-intl/locale-data/en';
+import zh from 'react-intl/locale-data/zh';
+import getMessagesForLocale from "./locales";
 
 const store = configureStore();
+
+addLocaleData([
+  ...en,
+  ...zh,
+])
 
 interface IState {
   activeIndex: number;
@@ -29,22 +38,26 @@ export default class App extends Component<{}, IState> {
 
   public render (): ReactNode {
     const { activeIndex } = this.state;
+    const locale = "en";
+    // const locale = "zh-CN";
 
     return (
       <Provider store={store}>
-        <MuiThemeProvider theme={lightblue}>
-          <ConnectedRouter store={store} history={history}>
-            <Layout
-              side={<Side activeIndex={activeIndex} handleChange={this.handleChange} />}
-              left={<Left activeIndex={activeIndex} />}
-              header={<Header />}
-              main={<Routes />}
-              right={<Right />}
-              footer={<Footer />}
-            >
-            </Layout>
-          </ConnectedRouter>
-        </MuiThemeProvider>
+        <IntlProvider locale={locale} messages={getMessagesForLocale(locale)}>
+          <MuiThemeProvider theme={lightblue}>
+            <ConnectedRouter store={store} history={history}>
+              <Layout
+                side={<Side activeIndex={activeIndex} handleChange={this.handleChange} />}
+                left={<Left activeIndex={activeIndex} />}
+                header={<Header />}
+                main={<Routes />}
+                right={<Right />}
+                footer={<Footer />}
+              >
+              </Layout>
+            </ConnectedRouter>
+          </MuiThemeProvider>
+        </IntlProvider>
       </Provider>
     )
   }
