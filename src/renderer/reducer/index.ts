@@ -4,7 +4,7 @@ import { IRootState, NRootState } from "./root";
 import { todoReducer } from "./todos";
 import { counterReducer } from "./counter";
 import { themeReducer } from "./theme";
-import { projectReducer } from "./projects";
+import { projectReducer } from "./project";
 
 export { IRootState, NRootState };
 

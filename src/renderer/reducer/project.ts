@@ -2,6 +2,7 @@ import { NRootState } from "./root";
 import { handleActions } from "redux-actions";
 import { IProjectModel } from "../model";
 import { NProjectAction } from "../action";
+import { getProjectInfoByPath } from "../utils";
 
 const initialState: NRootState.IProjectState = [];
 
@@ -12,12 +13,14 @@ export const projectReducer = handleActions<NRootState.IProjectState, IProjectMo
     },
     [NProjectAction.EType.IMPORT_PROJECT]: (state, action) => {
       if (action.payload && action.payload.path) {
+        const projectInfo = getProjectInfoByPath(action.payload.path);
         return [
+          ...state,
           {
             id: state.reduce((max, todo) => Math.max(todo.id || 1, max), 0) + 1,
-            path: action.payload.path
+            name: projectInfo.name,
+            path: projectInfo.path
           },
-          ...state
         ]
       }
       return state;

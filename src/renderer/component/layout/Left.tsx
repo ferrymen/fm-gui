@@ -1,11 +1,13 @@
 import React, { Fragment, Component, ReactNode } from "react";
 import { TabContainer } from "../tab";
-import { Tooltip, Divider } from "@material-ui/core";
+import { Tooltip, Divider, List, ListItem, ListItemIcon, ListItemText, Collapse, RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
 import { Flex, Box } from "@rebass/grid";
-import { AddCircleOutline, FolderOpenOutlined } from "@material-ui/icons";
+import { AddCircleOutline, FolderOpenOutlined, RadioButtonUnchecked, ExpandLess, ExpandMore, RadioButtonChecked } from "@material-ui/icons";
 import { injectIntl, InjectedIntl, defineMessages } from 'react-intl';
 import { OProjectAction } from "../../action";
 import { NRootState } from "../../reducer";
+import { remote } from "electron";
+import { hideBoilerplateDesp } from "../../utils";
 
 // const messages = defineMessages({
 //   projectAdd: { id: "project.add" },
@@ -19,11 +21,32 @@ interface IProps {
   actions: OProjectAction;
 }
 
-class LeftBase extends Component<IProps> {
+interface IState {
+  selectedProject: string;
+}
+
+class LeftBase extends Component<IProps, IState> {
+  constructor (props: IProps) {
+    super(props)
+
+    this.state = {
+      selectedProject: ""
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange (event: any) {
+    this.setState({ selectedProject: event.target.value});
+  }
+
   public render (): ReactNode {
-    const { activeIndex, intl, actions } = this.props;
+    const { activeIndex, intl, actions, projects } = this.props;
     const importProject = () => {
-      actions!.importProject({ path: 'tt' })
+      const importPath = remote.dialog.showOpenDialog({ properties: ["openDirectory"] });
+      const projectPath = importPath[0];
+
+      actions.importProject({ path: projectPath })
     }
 
     return (
@@ -46,6 +69,33 @@ class LeftBase extends Component<IProps> {
               </Box>
             </Flex>
             <Divider />
+            {
+              projects.length > 0 &&
+              <List
+                component="nav"
+              >
+              {
+                projects.map(it =>
+                  <ListItem key={it.id} button disableGutters={true} style={{padding: "4px 0"}}>
+                    <Radio
+                      checked={this.state.selectedProject === it.name}
+                      onChange={this.handleChange}
+                      value={it.name}
+                      color="primary"
+                      icon={<RadioButtonUnchecked fontSize="small" style={{width: "14px", height: "14px"}} />}
+                      checkedIcon={<RadioButtonChecked fontSize="small" style={{width: "14px", height: "14px"}} />}
+                      style={{padding: 0}}
+                    />
+                    <ListItemText
+                      inset
+                      primary={hideBoilerplateDesp(it.name, 20)}
+                      onClick={() => this.handleChange({ target: {value: it.name} })}
+                      style={{padding: "0 4px"}} />
+                  </ListItem>
+                )
+              }
+              </List>
+            }
           </TabContainer>
         }
         { activeIndex === 1 && <TabContainer>Favorite</TabContainer> }
