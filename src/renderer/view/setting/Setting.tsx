@@ -9,7 +9,8 @@ import { InjectedIntl } from "react-intl";
 import { OIntlAction, NIntlAction } from "../../action/intl";
 
 export interface IProps {
-  intl: Partial<InjectedIntl>;
+  // intl: Partial<InjectedIntl>;
+  intl: NRootState.TIntl;
   actions: OIntlAction;
 }
 
@@ -28,7 +29,7 @@ export default class ViewCounter extends Component<IProps> {
       <div>
         <Header />
         <Setting
-          locale={intl.locale}
+          intl={intl}
           actions={actions}
         />
       </div>

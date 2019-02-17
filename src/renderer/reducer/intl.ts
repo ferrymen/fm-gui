@@ -1,13 +1,15 @@
 import { NRootState } from "./root";
 import { handleActions } from "redux-actions";
-import { InjectedIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import { NIntlAction } from "../action/intl";
+import { IIntlModel } from "../model";
 
 const initialState: NRootState.TIntl = {
-  locale: "en"
+  locale: "en",
+  FormattedMessage: FormattedMessage
 };
 
-export const intlReducer = handleActions<NRootState.TIntl, InjectedIntl>(
+export const intlReducer = handleActions<NRootState.TIntl, IIntlModel>(
   {
     [NIntlAction.EType.CHANGE_LOCALE]: (state, action) => {
       return {

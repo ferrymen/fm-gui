@@ -1,12 +1,12 @@
 import { createAction } from "redux-actions";
-import { InjectedIntl } from "react-intl";
+import { IIntlModel } from "../model";
 
 export namespace NIntlAction {
   export enum EType {
     CHANGE_LOCALE = "CHANGE_LOCALET",
   }
 
-  export const changeLocale = createAction<PartialPick<InjectedIntl, "locale">>(
+  export const changeLocale = createAction<PartialPick<IIntlModel, "locale">>(
     EType.CHANGE_LOCALE
   )
 }

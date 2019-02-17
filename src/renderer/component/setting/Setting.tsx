@@ -1,25 +1,29 @@
 import React from "react";
 import { Select, MenuItem, List, ListSubheader, ListItem, ListItemText, ListItemSecondaryAction } from "@material-ui/core";
-import { injectIntl, InjectedIntl } from "react-intl";
 import { locales } from "../../locales";
 import { OIntlAction } from "../../action/intl";
+import { IIntlModel } from "../../model";
 
 interface IProps {
-  intl: InjectedIntl;
-  locale?: string;
+  intl: IIntlModel;
   actions: OIntlAction;
 }
 
-const SettingBase = (props: IProps) => {
-  const { intl, locale, actions } = props;
+export const Setting = (props: IProps) => {
+  const { intl, actions } = props;
 
   return (
-    <List subheader={<ListSubheader>{intl.formatMessage({ id: "common.settings" })}</ListSubheader>}>
+    <List subheader={
+      <ListSubheader>
+        <intl.FormattedMessage
+            id="common.settings"
+        />
+      </ListSubheader>}>
       <ListItem>
-        <ListItemText primary={intl.formatMessage({ id: "common.settings.language" })} />
+        <ListItemText primary={<intl.FormattedMessage id="common.settings.language" />} />
         <ListItemSecondaryAction>
           <Select
-            value={locale}
+            value={intl.locale}
             onChange={(event) => {actions.changeLocale({ locale: event.target.value })}}
             // inputProps={{
             //   name: "locale"
@@ -34,5 +38,3 @@ const SettingBase = (props: IProps) => {
     </List>
   )
 };
-
-export const Setting = injectIntl(SettingBase);
