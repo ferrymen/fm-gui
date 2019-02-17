@@ -5,7 +5,6 @@ import { Dispatch, bindActionCreators } from "redux";
 import { omit } from "../../utils";
 import { Header } from "../../component/layout";
 import { Setting } from "../../component/setting";
-import { InjectedIntl } from "react-intl";
 import { OIntlAction, NIntlAction } from "../../action/intl";
 
 export interface IProps {

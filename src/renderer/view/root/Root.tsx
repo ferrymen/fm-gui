@@ -8,7 +8,8 @@ import { OProjectAction, NProjectAction } from "../../action";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 import { omit } from "../../utils";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps, Switch, Route } from "react-router";
+import ViewProjectDetial from "../project/ProjectDetial";
 
 interface IProps extends RouteComponentProps {
   projects: NRootState.IProjectState,
@@ -20,10 +21,11 @@ interface IState {
 }
 
 @connect(
-  (state: IRootState, ownProps: RouteComponentProps): Pick<IProps, "projects" | "location"> => {
+  (state: IRootState, ownProps: RouteComponentProps): Pick<IProps, "projects" | "location" | "history"> => {
     return {
       projects: state.projects,
-      location: ownProps.location
+      location: ownProps.location,
+      history: ownProps.history,
     }
   },
   (dispatch: Dispatch): Pick<IProps, "actions"> => ({
@@ -59,7 +61,11 @@ export default class Root extends Component<IProps, IState> {
         }
         header={<Header />}
         // main={<Routes />}
-        main={<div>main</div>}
+        main={
+          <div style={{wordBreak: "break-all"}}>
+            <Route path="/project" component={ViewProjectDetial} />
+          </div>
+        }
         right={<Right />}
         footer={<Footer />}
       >

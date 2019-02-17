@@ -19,12 +19,21 @@ export const projectReducer = handleActions<NRootState.IProjectState, IProjectMo
           {
             id: state.reduce((max, todo) => Math.max(todo.id || 1, max), 0) + 1,
             name: projectInfo.name,
-            path: projectInfo.path
+            path: projectInfo.path,
+            active: false,
           },
         ]
       }
       return state;
-    }
+    },
+    [NProjectAction.EType.SELECT_PROJECT]: (state, action) => {
+      return state.map((project) => {
+        if (!project || !action || !action.payload) {
+          return project;
+        }
+        return project.id === action.payload.id ? { ...project, active: true } : { ...project, active: false }
+      });
+    },
   },
   initialState
 )

@@ -8,7 +8,8 @@ import { OProjectAction } from "../../action";
 import { NRootState } from "../../reducer";
 import { remote } from "electron";
 import { hideBoilerplateDesp } from "../../utils";
-import { Link } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
+import { history } from "../../store";
 
 // const messages = defineMessages({
 //   projectAdd: { id: "project.add" },
@@ -22,23 +23,22 @@ interface IProps {
   actions: OProjectAction;
 }
 
-interface IState {
-  selectedProject: string;
-}
-
-class LeftBase extends Component<IProps, IState> {
+class LeftBase extends Component<IProps> {
   constructor (props: IProps) {
     super(props)
-
-    this.state = {
-      selectedProject: ""
-    }
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange (event: any) {
-    this.setState({ selectedProject: event.target.value});
+  handleChange (action: any) {
+    const { actions } = this.props;
+    if (action.type === "select") {
+      // history.push({
+      //   pathname: "/project",
+      //   search: `?id=${action.payload.id}`,
+      // })
+      actions.selectProject({ id: action.payload.id })
+    }
   }
 
   public render (): ReactNode {
@@ -82,11 +82,11 @@ class LeftBase extends Component<IProps, IState> {
                     button
                     disableGutters={true}
                     style={{padding: "4px 0"}}
-                    component={(itemProps: any) => <Link to="/" {...itemProps} />}
+                    component={(itemProps: any) => <Link to="/project" {...itemProps} />}
+                    onClick={() => this.handleChange({ type: "select", payload: { id: it.id } })}
                   >
                     <Radio
-                      checked={this.state.selectedProject === it.name}
-                      onChange={this.handleChange}
+                      checked={it.active}
                       value={it.name}
                       color="primary"
                       icon={<RadioButtonUnchecked fontSize="small" style={{width: "14px", height: "14px"}} />}
@@ -96,7 +96,6 @@ class LeftBase extends Component<IProps, IState> {
                     <ListItemText
                       inset
                       primary={hideBoilerplateDesp(it.name, 20)}
-                      onClick={() => this.handleChange({ target: {value: it.name} })}
                       style={{padding: "0 4px"}} />
                   </ListItem>
                 )

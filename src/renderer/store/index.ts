@@ -1,4 +1,4 @@
-import { createHashHistory } from "history";
+import { createHashHistory, createBrowserHistory } from "history";
 import { routerActions, routerMiddleware } from "react-router-redux";
 import { applyMiddleware, compose, createStore, DeepPartial, Reducer, Store } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -10,7 +10,10 @@ import { rootReducer, IRootState } from "../reducer";
 //   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: (args: any) => any;
 // }
 
-export const history = createHashHistory();
+// for use in modern web browsers that support the HTML5 history API
+export const history = createBrowserHistory();
+// for use in legacy web browsers
+// export const history = createHashHistory();
 
 export function configureStore(initialState?: DeepPartial<IRootState>) {
   const middlewares = [];
