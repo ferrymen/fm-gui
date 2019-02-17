@@ -1,7 +1,9 @@
 import { ICounterModel, ITodoModel, IThemeModel, IProjectModel } from "../model";
 import { RouterState } from "react-router-redux";
+import { InjectedIntl } from "react-intl";
 
 export interface IRootState {
+  intl: Partial<InjectedIntl>;
   counter: NRootState.TCounterState;
   router?: RouterState;
   todos?: NRootState.TTodoState;
@@ -10,6 +12,7 @@ export interface IRootState {
 }
 
 export namespace NRootState {
+  export type TIntl = Partial<InjectedIntl>;
   export type TCounterState = ICounterModel;
   export type TTodoState = ITodoModel[];
   export type IThemeState = IThemeModel;

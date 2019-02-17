@@ -1,5 +1,7 @@
 {
   "common.back": "返回",
+  "common.settings": "设置",
+  "common.settings.language": "语言",
   "project.add": "新建项目",
   "project.import": "导入项目"
 }

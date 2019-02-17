@@ -5,10 +5,12 @@ import { todoReducer } from "./todos";
 import { counterReducer } from "./counter";
 import { themeReducer } from "./theme";
 import { projectReducer } from "./project";
+import { intlReducer } from "./intl";
 
 export { IRootState, NRootState };
 
 export const rootReducer = combineReducers<IRootState>({
+  intl: intlReducer as any,
   router: routerReducer,
   todos: todoReducer as any,
   counter: counterReducer as any,

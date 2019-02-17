@@ -8,6 +8,7 @@ import { OProjectAction } from "../../action";
 import { NRootState } from "../../reducer";
 import { remote } from "electron";
 import { hideBoilerplateDesp } from "../../utils";
+import { Link } from "react-router-dom";
 
 // const messages = defineMessages({
 //   projectAdd: { id: "project.add" },
@@ -76,7 +77,13 @@ class LeftBase extends Component<IProps, IState> {
               >
               {
                 projects.map(it =>
-                  <ListItem key={it.id} button disableGutters={true} style={{padding: "4px 0"}}>
+                  <ListItem
+                    key={it.id}
+                    button
+                    disableGutters={true}
+                    style={{padding: "4px 0"}}
+                    component={(itemProps: any) => <Link to="/" {...itemProps} />}
+                  >
                     <Radio
                       checked={this.state.selectedProject === it.name}
                       onChange={this.handleChange}

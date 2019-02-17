@@ -7,7 +7,7 @@ import { lightblue } from "./ui/theme";
 import { IntlProvider, addLocaleData } from "react-intl";
 import en from 'react-intl/locale-data/en';
 import zh from 'react-intl/locale-data/zh';
-import getMessagesForLocale from "./locales";
+import { getMessagesForLocale, ConnectedIntlProvider } from "./locales";
 import Routes from "./routes";
 
 const store = configureStore();
@@ -35,18 +35,18 @@ export default class App extends Component<{}, IState> {
   };
 
   public render (): ReactNode {
-    const locale = "en";
+    // const locale = "en";
     // const locale = "zh-CN";
 
     return (
       <Provider store={store}>
-        <IntlProvider locale={locale} messages={getMessagesForLocale(locale)}>
+        <ConnectedIntlProvider>
           <MuiThemeProvider theme={lightblue}>
             <ConnectedRouter store={store} history={history}>
               <Routes />
             </ConnectedRouter>
           </MuiThemeProvider>
-        </IntlProvider>
+        </ConnectedIntlProvider>
       </Provider>
     )
   }

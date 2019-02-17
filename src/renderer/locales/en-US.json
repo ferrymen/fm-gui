@@ -1,5 +1,7 @@
 {
   "common.back": "Back",
+  "common.settings": "Settings",
+  "common.settings.language": "Language",
   "project.add": "New project",
   "project.import": "Import project"
 }
