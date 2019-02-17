@@ -1,21 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { ICounterModel, ITodoModel } from "../../model";
+import { ITodoModel } from "../../model";
 import { IRootState } from "../../reducer";
 
 export namespace NHome {
   export interface IProps {
     todos: ITodoModel[];
   }
-}
-
-const Header = () => {
-  return <div>Header</div>;
-}
-
-const Footer = () => {
-  return <div>Footer</div>;
 }
 
 // no hot reload

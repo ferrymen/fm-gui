@@ -11,7 +11,6 @@ export const projectReducer = handleActions<NRootState.IProjectState, IProjectMo
       return state;
     },
     [NProjectAction.EType.IMPORT_PROJECT]: (state, action) => {
-      console.log(action)
       if (action.payload && action.payload.path) {
         return [
           {

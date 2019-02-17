@@ -4,11 +4,8 @@ import { Tooltip, Divider } from "@material-ui/core";
 import { Flex, Box } from "@rebass/grid";
 import { AddCircleOutline, FolderOpenOutlined } from "@material-ui/icons";
 import { injectIntl, InjectedIntl, defineMessages } from 'react-intl';
-import { connect } from "react-redux";
-import { OProjectAction, NProjectAction } from "../../action";
-import { IRootState, NRootState } from "../../reducer";
-import { Dispatch, bindActionCreators } from "redux";
-import { omit } from "../../utils";
+import { OProjectAction } from "../../action";
+import { NRootState } from "../../reducer";
 
 // const messages = defineMessages({
 //   projectAdd: { id: "project.add" },
@@ -18,18 +15,10 @@ import { omit } from "../../utils";
 interface IProps {
   activeIndex: number;
   intl: InjectedIntl;
-  projects?: NRootState.IProjectState;
-  actions?: OProjectAction;
+  projects: NRootState.IProjectState;
+  actions: OProjectAction;
 }
 
-@connect(
-  (state: IRootState, ownProps): Pick<IProps, "projects"> => ({
-    projects: state.projects
-  }),
-  (dispatch: Dispatch): Pick<IProps, "actions"> => ({
-    actions: bindActionCreators(omit(NProjectAction, "EType"), dispatch)
-  })
-)
 class LeftBase extends Component<IProps> {
   public render (): ReactNode {
     const { activeIndex, intl, actions } = this.props;
