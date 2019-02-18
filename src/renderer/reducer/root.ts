@@ -1,4 +1,4 @@
-import { ICounterModel, ITodoModel, IThemeModel, IProjectModel, IIntlModel } from "../model";
+import { ICounterModel, ITodoModel, IThemeModel, IProjectModel, IIntlModel, IMenuModel } from "../model";
 import { RouterState } from "react-router-redux";
 
 export interface IRootState {
@@ -8,6 +8,7 @@ export interface IRootState {
   todos?: NRootState.TTodoState;
   // theme: NRootState.IThemeState;
   projects: NRootState.IProjectState;
+  menu: NRootState.TMenuState;
 }
 
 export namespace NRootState {
@@ -16,4 +17,5 @@ export namespace NRootState {
   export type TTodoState = ITodoModel[];
   export type IThemeState = IThemeModel;
   export type IProjectState = IProjectModel[];
+  export type TMenuState = IMenuModel;
 }

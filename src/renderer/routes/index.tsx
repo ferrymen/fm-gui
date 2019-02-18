@@ -1,10 +1,10 @@
 import React from "react";
-import ViewCounter from "../view/counter/Counter";
 // import ViewIndex from "../view/index/Index";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { ViewProject } from "../view/project";
 import { ViewSetting } from "../view/setting";
 import { IRootState } from "../reducer";
+import { ViewCounter } from "../view/counter/Counter";
 
 /**
  * Order required

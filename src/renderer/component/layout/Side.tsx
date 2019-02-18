@@ -1,16 +1,17 @@
 import React from "react";
 import { Paper } from "@material-ui/core";
 import { TabsVertical, TabsVerticalItem } from "../tab";
-import { Storage, Favorite, PersonPin, Settings } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { IMenuModel } from "../../model";
 
 interface IProps {
   activeIndex: number;
-  handleChange: (event: any, activeIndex: number) =>void;
+  changeMenu: (path: string) => void;
+  menu: IMenuModel;
 }
 
 export const Side = (props: IProps) => {
-  const { activeIndex, handleChange } = props;
+  const { activeIndex, changeMenu, menu } = props;
 
   return (
     <Paper square>
@@ -18,12 +19,15 @@ export const Side = (props: IProps) => {
         value={activeIndex}
         // variant="fullWidth"
         // indicatorColor="primary"
+        // onChange={changeMenu}
         textColor="primary"
-        onChange={handleChange}
       >
-        <TabsVerticalItem icon={<Storage />} />
-        <TabsVerticalItem icon={<Favorite />} component={(itemProps: any) => <Link to="/counter" {...itemProps} />} />
-        <TabsVerticalItem icon={<Settings />} component={(itemProps: any) => <Link to="/setting" {...itemProps} />} />
+        {
+          menu.childrens.map((path, index) => {
+            const Component = menu.icons[index];
+            return <TabsVerticalItem key={index} onClick={() => changeMenu(path)} icon={<Component />} component={(itemProps: any) => <Link to={path} {...itemProps} />} />
+          })
+        }
       </TabsVertical>
     </Paper>
   )

@@ -4,12 +4,12 @@ import { withStyles, withTheme, WithStyles, WithTheme } from "@material-ui/core"
 import { createStyle, ClassKey } from "./style";
 
 interface ILayoutProps {
-  side: ReactNode;
-  left: ReactNode;
-  header: ReactNode;
-  main: ReactNode;
-  right: ReactNode;
-  footer: ReactNode;
+  side?: ReactNode;
+  left?: ReactNode;
+  header?: ReactNode;
+  main?: ReactNode;
+  right?: ReactNode;
+  footer?: ReactNode;
 }
 
 const LayoutBase: SFC<ILayoutProps & WithStyles<ClassKey> & WithTheme> = props => {
@@ -36,9 +36,9 @@ const LayoutBase: SFC<ILayoutProps & WithStyles<ClassKey> & WithTheme> = props =
   return (
     <SplitPane
       split="vertical"
-      minSize={180}
-      maxSize={300}
-      defaultSize="20%"
+      minSize={left ? 180 : 50}
+      maxSize={left ? 180 : 50}
+      defaultSize={left ? 180 : 50}
       // size={dragging ? undefined : size}
       // onChange={handleDrag}
       // onDragStarted={handleDragStart}
@@ -50,8 +50,8 @@ const LayoutBase: SFC<ILayoutProps & WithStyles<ClassKey> & WithTheme> = props =
       </SplitPane>
       <SplitPane split="horizontal" maxSize={50}>
         <Fragment>{header}</Fragment>
-        <SplitPane split="horizontal" defaultSize="80%" maxSize={-50}>
-          <SplitPane split="vertical" defaultSize="80%" maxSize={-50}>
+        <SplitPane split="horizontal" defaultSize={right ? "80%" : "100%"} maxSize={right ? -50 : undefined}>
+          <SplitPane split="vertical" defaultSize={right ? "80%" : "100%"} maxSize={right ? -50 : undefined}>
             <Fragment>{main}</Fragment>
             <Fragment>{right}</Fragment>
           </SplitPane>

@@ -4,7 +4,7 @@ import { Side, Left, Header, Right, Footer } from "../../component/layout";
 import React from "react";
 import Routes from "../../routes";
 import { NRootState, IRootState } from "../../reducer";
-import { OProjectAction, NProjectAction } from "../../action";
+import { OProjectAction, NProjectAction, OMenuAction, NMenuAction } from "../../action";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 import { omit } from "../../utils";
@@ -13,53 +13,44 @@ import { ViewProjectDetial } from "./ProjectDetial";
 
 interface IProps extends RouteComponentProps {
   projects: NRootState.IProjectState,
-  actions: OProjectAction
-}
-
-interface IState {
-  activeIndex: number;
+  menu: NRootState.TMenuState,
+  actionsProject: OProjectAction,
+  actionsMenu: OMenuAction,
 }
 
 @connect(
-  (state: IRootState, ownProps: RouteComponentProps): Pick<IProps, "projects" | "location" | "history"> => {
+  (state: IRootState, ownProps: RouteComponentProps): Pick<IProps, "projects" | "location" | "history" | "menu"> => {
     return {
       projects: state.projects,
       location: ownProps.location,
       history: ownProps.history,
+      menu: state.menu,
     }
   },
-  (dispatch: Dispatch): Pick<IProps, "actions"> => ({
-    actions: bindActionCreators(omit(NProjectAction, "EType"), dispatch)
+  (dispatch: Dispatch): Pick<IProps, "actionsProject" | "actionsMenu"> => ({
+    actionsProject: bindActionCreators(omit(NProjectAction, "EType"), dispatch),
+    actionsMenu: bindActionCreators(omit(NMenuAction, "EType"), dispatch)
   })
 )
-export class ViewProject extends Component<IProps, IState> {
+export class ViewProject extends Component<IProps> {
   constructor (props: any) {
     super(props);
-    this.state = {
-      activeIndex: 0
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange (event: any, activeIndex: number) {
-    this.setState({ activeIndex });
   }
 
   public render (): ReactNode {
-    const { projects, actions, location } = this.props;
-    const { activeIndex } = this.state;
+    const { projects, actionsProject, actionsMenu, location, match, menu, history } = this.props;
 
     return (
       <Layout
-        side={<Side activeIndex={activeIndex} handleChange={this.handleChange} />}
+        side={<Side activeIndex={menu.actived} changeMenu={(path: string) => actionsMenu.changeMenu({path: path})} menu={menu} />}
         left={
           <Left
-            activeIndex={activeIndex}
+            activeIndex={menu.actived}
             projects={projects}
-            actions={actions}
+            actions={actionsProject}
           />
         }
-        header={<Header />}
+        header={<Header history={history} />}
         // main={<Routes />}
         main={
           <div style={{wordBreak: "break-all"}}>

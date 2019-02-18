@@ -12,7 +12,7 @@ export interface IProps extends RouteComponentProps {
   // intl: Partial<InjectedIntl>;
   intl: NRootState.TIntl;
   projects: NRootState.IProjectState;
-  actions: OProjectAction;
+  actionsProject: OProjectAction;
 }
 
 @connect(
@@ -20,18 +20,18 @@ export interface IProps extends RouteComponentProps {
     intl: state.intl,
     projects: state.projects
   }),
-  (dispatch: Dispatch): Pick<IProps, "actions"> => ({
-    actions: bindActionCreators(omit(NProjectAction, "EType"), dispatch)
+  (dispatch: Dispatch): Pick<IProps, "actionsProject"> => ({
+    actionsProject: bindActionCreators(omit(NProjectAction, "EType"), dispatch)
   })
 )
 export class ViewProjectDetial extends Component<IProps> {
   public render() {
-    const { intl, actions, projects, match } = this.props;
+    const { intl, actionsProject, projects, match } = this.props;
 
     return (
       <ProjectDetial
           intl={intl}
-          actions={actions}
+          actions={actionsProject}
           project={projects.filter((project) => String(project.id) === (match.params as any).id)[0]}
         />
     );
