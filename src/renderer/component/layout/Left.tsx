@@ -82,7 +82,7 @@ class LeftBase extends Component<IProps> {
                     button
                     disableGutters={true}
                     style={{padding: "4px 0"}}
-                    component={(itemProps: any) => <Link to="/project" {...itemProps} />}
+                    component={(itemProps: any) => <Link to={`/project/${it.id}`} {...itemProps} />}
                     onClick={() => this.handleChange({ type: "select", payload: { id: it.id } })}
                   >
                     <Radio

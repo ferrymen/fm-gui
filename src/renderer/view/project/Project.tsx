@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 import { omit } from "../../utils";
 import { RouteComponentProps, Switch, Route } from "react-router";
-import ViewProjectDetial from "../project/ProjectDetial";
+import { ViewProjectDetial } from "./ProjectDetial";
 
 interface IProps extends RouteComponentProps {
   projects: NRootState.IProjectState,
@@ -32,7 +32,7 @@ interface IState {
     actions: bindActionCreators(omit(NProjectAction, "EType"), dispatch)
   })
 )
-export default class Root extends Component<IProps, IState> {
+export class ViewProject extends Component<IProps, IState> {
   constructor (props: any) {
     super(props);
     this.state = {
@@ -63,7 +63,7 @@ export default class Root extends Component<IProps, IState> {
         // main={<Routes />}
         main={
           <div style={{wordBreak: "break-all"}}>
-            <Route path="/project" component={ViewProjectDetial} />
+            <Route path="/project/:id" component={ViewProjectDetial} />
           </div>
         }
         right={<Right />}

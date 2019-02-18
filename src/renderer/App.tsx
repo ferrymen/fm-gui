@@ -43,7 +43,7 @@ export default class App extends Component<{}, IState> {
         <ConnectedIntlProvider>
           <MuiThemeProvider theme={lightblue}>
             <ConnectedRouter store={store} history={history}>
-              <Routes />
+              <Routes store={store} />
             </ConnectedRouter>
           </MuiThemeProvider>
         </ConnectedIntlProvider>

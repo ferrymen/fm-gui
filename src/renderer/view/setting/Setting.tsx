@@ -21,7 +21,7 @@ export interface IProps {
     actions: bindActionCreators(omit(NIntlAction, "EType"), dispatch)
   })
 )
-export default class ViewCounter extends Component<IProps> {
+export class ViewSetting extends Component<IProps> {
   public render() {
     const { intl, actions } = this.props;
     return (
