@@ -1,5 +1,5 @@
 import React, { Component, ReactNode, Fragment } from "react";
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 import { configureStore, history } from "./store";
 import { MuiThemeProvider } from "@material-ui/core";
@@ -9,6 +9,18 @@ import en from 'react-intl/locale-data/en';
 import zh from 'react-intl/locale-data/zh';
 import { getMessagesForLocale, ConnectedIntlProvider } from "./locales";
 import Routes from "./routes";
+import { IRootState } from "./reducer";
+
+function mapStateToProps(state: IRootState) {
+  const { theme } = state.theme;
+  return { theme: theme };
+}
+
+const ConnectedMuiThemeProvider = connect(mapStateToProps)(({ children, theme }) => (
+  <MuiThemeProvider theme={theme}>
+    {children}
+  </MuiThemeProvider>
+));
 
 const store = configureStore();
 
@@ -17,35 +29,21 @@ addLocaleData([
   ...zh,
 ])
 
-interface IState {
-  activeIndex: number;
-}
-
-export default class App extends Component<{}, IState> {
-  constructor (props: any) {
-    super(props);
-    this.state = {
-      activeIndex: 0
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange (event: any, activeIndex: number) {
-    this.setState({ activeIndex });
-  };
-
+export default class App extends Component<{}> {
   public render (): ReactNode {
     // const locale = "en";
     // const locale = "zh-CN";
+    const state: IRootState = store.getState() as any;
+    const theme = state.theme.theme
 
     return (
       <Provider store={store}>
         <ConnectedIntlProvider>
-          <MuiThemeProvider theme={lightblue}>
+          <ConnectedMuiThemeProvider>
             <ConnectedRouter store={store} history={history}>
               <Routes store={store} />
             </ConnectedRouter>
-          </MuiThemeProvider>
+          </ConnectedMuiThemeProvider>
         </ConnectedIntlProvider>
       </Provider>
     )

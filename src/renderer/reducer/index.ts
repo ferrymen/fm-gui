@@ -15,7 +15,7 @@ export const rootReducer = combineReducers<IRootState>({
   router: routerReducer,
   todos: todoReducer as any,
   counter: counterReducer as any,
-  // theme: themeReducer as any,
+  theme: themeReducer as any,
   projects: projectReducer as any,
   menu: menuReducer as any,
 });

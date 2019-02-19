@@ -6,7 +6,7 @@ export interface IRootState {
   counter: NRootState.TCounterState;
   router?: RouterState;
   todos?: NRootState.TTodoState;
-  // theme: NRootState.IThemeState;
+  theme: NRootState.IThemeState;
   projects: NRootState.IProjectState;
   menu: NRootState.TMenuState;
 }

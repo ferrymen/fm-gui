@@ -2,6 +2,8 @@
   "common.back": "Back",
   "common.settings": "Settings",
   "common.settings.language": "Language",
+  "common.settings.theme": "Theme",
+  "common.settings.theme.type": "Type",
   "project.add": "New project",
   "project.import": "Import project"
 }

@@ -2,7 +2,7 @@ import { ColorPartial } from "@material-ui/core/styles/createPalette";
 import { createMuiTheme, Theme } from "@material-ui/core";
 // import deepPurple from '@material-ui/core/colors/deepPurple';
 
-const PRIMARY_COLOR = "#007ca0";
+const PRIMARY_COLOR = "#19191c";
 const RAISED_COLOR = "#df524e";
 const BACKGROUND_COLOR = "#dddddd";
 
@@ -10,20 +10,21 @@ const DEFAULT_SPACING = 8;
 
 // http://mcg.mbitson.com/
 const primarypalette: ColorPartial = {
-  50: "#e0eff4",
-  100: "#b3d8e3",
-  200: "#80bed0",
-  300: "#4da3bd",
-  400: "#2690ae",
+  50: '#e3e3e4',
+  100: '#bababb',
+  200: '#8c8c8e',
+  300: '#5e5e60',
+  400: '#3c3c3e',
   500: PRIMARY_COLOR,
-  600: "#007498",
-  700: "#00698e",
-  800: "#005f84",
-  900: "#004c73",
-  A100: "#a1daff",
-  A200: "#6ec5ff",
-  A400: "#3bb1ff",
-  A700: "#22a7ff"
+  600: '#161619',
+  700: '#121214',
+  800: '#0e0e11',
+  900: '#080809',
+  A100: '#5151ff',
+  A200: '#1e1eff',
+  A400: '#0000ea',
+  A700: '#0000d0',
+  // 'contrastDefaultColor': 'light',
   // 'contrastDefaultColor': 'light',
   // main: deepPurple[500]
 };
@@ -64,7 +65,7 @@ const greypalette: ColorPartial = {
   // 'contrastDefaultColor': 'dark',
 };
 
-export const lightblue: Theme = createMuiTheme({
+export const lightdark: Theme = createMuiTheme({
   palette: {
     primary: primarypalette,
     secondary: secondarypalette,

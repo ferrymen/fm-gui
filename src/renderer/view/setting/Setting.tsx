@@ -8,29 +8,34 @@ import { Setting } from "../../component/setting";
 import { OIntlAction, NIntlAction } from "../../action/intl";
 import { Layout } from "../../ui";
 import { RouteComponentProps } from "react-router";
-import { OMenuAction, NMenuAction } from "../../action";
+import { OMenuAction, NMenuAction, OThemeAction, NThemeAction } from "../../action";
+import { locales } from "../../locales";
 
 export interface IProps extends RouteComponentProps {
   // intl: Partial<InjectedIntl>;
   intl: NRootState.TIntl;
   menu: NRootState.TMenuState,
+  theme: NRootState.IThemeState;
   actionsIntl: OIntlAction;
-  actionsMenu: OMenuAction,
+  actionsMenu: OMenuAction;
+  actionsTheme: OThemeAction;
 }
 
 @connect(
-  (state: IRootState, ownProps): Pick<IProps, "intl" | "menu"> => ({
+  (state: IRootState, ownProps): Pick<IProps, "intl" | "menu" | "theme"> => ({
     intl: state.intl,
     menu: state.menu,
+    theme: state.theme,
   }),
-  (dispatch: Dispatch): Pick<IProps, "actionsIntl" | "actionsMenu"> => ({
+  (dispatch: Dispatch): Pick<IProps, "actionsIntl" | "actionsMenu" | "actionsTheme"> => ({
     actionsIntl: bindActionCreators(omit(NIntlAction, "EType"), dispatch),
-    actionsMenu: bindActionCreators(omit(NMenuAction, "EType"), dispatch)
+    actionsMenu: bindActionCreators(omit(NMenuAction, "EType"), dispatch),
+    actionsTheme: bindActionCreators(omit(NThemeAction, "EType"), dispatch)
   })
 )
 export class ViewSetting extends Component<IProps> {
   public render() {
-    const { intl, actionsIntl, actionsMenu, match, menu, history } = this.props;
+    const { intl, actionsIntl, actionsMenu, match, menu, history, actionsTheme, theme } = this.props;
 
     return (
       <Layout
@@ -41,7 +46,9 @@ export class ViewSetting extends Component<IProps> {
         main={
           <Setting
             intl={intl}
-            actions={actionsIntl}
+            actions={{...actionsIntl, ...actionsTheme}}
+            locales={Object.keys(locales)}
+            theme={theme}
           />
         }
       >
