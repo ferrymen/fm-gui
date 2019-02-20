@@ -5,10 +5,10 @@ import { NProjectModel, IProjectModel } from "../../model";
 import { ProjectDetial, ProjectEmpty } from "../../component/project";
 import { OProjectAction, NProjectAction, OMenuAction, NMenuAction } from "../../action";
 import { Dispatch, bindActionCreators } from "redux";
-import { omit } from "../../utils";
 import { RouteComponentProps } from "react-router";
 import { Layout } from "../../ui";
 import { Side, Header } from "../../component/layout";
+import { omit } from "../../lib/utils";
 
 interface IProps extends RouteComponentProps {
   // intl: Partial<InjectedIntl>;

@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from "electron";
 import { resolve } from "path";
+import config from "./config";
 
 let mainWindow: BrowserWindow | null;
 
@@ -56,3 +57,6 @@ app.on("window-all-closed", () => {
     app.quit();
   }
 });
+
+// main process expose to renderer process
+(global as any).config = config;

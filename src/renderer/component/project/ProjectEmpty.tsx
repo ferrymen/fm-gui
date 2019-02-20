@@ -6,6 +6,8 @@ import { AddCircleOutline, FolderOpenOutlined } from "@material-ui/icons";
 import { createStyle, ClassKey, style } from "./style";
 import { remote } from "electron";
 import { History } from "history";
+import { getLocalProjects, setLocalProjects } from "../../lib/localStorage";
+import { getProjectInfoByPath } from "../../lib/utils";
 
 interface IProps {
   intl: IIntlModel;
@@ -19,7 +21,8 @@ const ProjectEmptyBase: SFC<IProps & WithStyles<ClassKey> & WithTheme> = (props)
     const importPath = remote.dialog.showOpenDialog({ properties: ["openDirectory"] });
     const projectPath = importPath[0];
 
-    actions.importProject({ path: projectPath })
+    actions.importProject({ path: projectPath });
+
     history.push("/project")
   }
 

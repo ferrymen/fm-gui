@@ -7,9 +7,10 @@ import { NRootState, IRootState } from "../../reducer";
 import { OProjectAction, NProjectAction, OMenuAction, NMenuAction } from "../../action";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
-import { omit } from "../../utils";
 import { RouteComponentProps, Switch, Route } from "react-router";
 import { ViewProjectDetial } from "./ProjectDetial";
+import { omit } from "../../lib/utils";
+import { getLocalProjects, setLocalProjects } from "../../lib/localStorage";
 
 interface IProps extends RouteComponentProps {
   projects: NRootState.IProjectState,

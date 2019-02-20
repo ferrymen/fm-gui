@@ -7,9 +7,9 @@ import { injectIntl, InjectedIntl, defineMessages } from 'react-intl';
 import { OProjectAction } from "../../action";
 import { NRootState } from "../../reducer";
 import { remote } from "electron";
-import { hideBoilerplateDesp } from "../../utils";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { history } from "../../store";
+import { hideBoilerplateDesp } from "../../lib/utils";
 
 // const messages = defineMessages({
 //   projectAdd: { id: "project.add" },

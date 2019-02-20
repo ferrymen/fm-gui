@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { IRootState, NRootState } from "../../reducer";
 import { Dispatch, bindActionCreators } from "redux";
-import { omit } from "../../utils";
 import { Header, Side } from "../../component/layout";
 import { Setting } from "../../component/setting";
 import { OIntlAction, NIntlAction } from "../../action/intl";
@@ -10,6 +9,7 @@ import { Layout } from "../../ui";
 import { RouteComponentProps } from "react-router";
 import { OMenuAction, NMenuAction, OThemeAction, NThemeAction } from "../../action";
 import { locales } from "../../locales";
+import { omit } from "../../lib/utils";
 
 export interface IProps extends RouteComponentProps {
   // intl: Partial<InjectedIntl>;

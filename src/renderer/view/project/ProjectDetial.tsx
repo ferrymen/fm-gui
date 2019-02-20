@@ -5,8 +5,8 @@ import { NProjectModel, IProjectModel } from "../../model";
 import { ProjectDetial } from "../../component/project";
 import { OProjectAction, NProjectAction } from "../../action";
 import { Dispatch, bindActionCreators } from "redux";
-import { omit } from "../../utils";
 import { RouteComponentProps } from "react-router";
+import { omit } from "../../lib/utils";
 
 interface IProps extends RouteComponentProps {
   // intl: Partial<InjectedIntl>;

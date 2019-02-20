@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { IRootState, NRootState } from "../../reducer";
 import { OCounterAction, NCounterAction, OMenuAction, NMenuAction } from "../../action";
 import { Dispatch, bindActionCreators } from "redux";
-import { omit } from "../../utils";
 import { Header, Side } from "../../component/layout";
 import { Layout } from "../../ui";
 import { RouteComponentProps } from "react-router";
+import { omit } from "../../lib/utils";
 
 export interface IProps extends RouteComponentProps {
   counter: NRootState.TCounterState;
