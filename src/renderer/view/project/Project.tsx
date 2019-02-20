@@ -40,6 +40,11 @@ export class ViewProject extends Component<IProps> {
   public render (): ReactNode {
     const { projects, actionsProject, actionsMenu, location, match, menu, history } = this.props;
 
+    if (!projects.length) {
+      history.push('/empty');
+      return null;
+    }
+
     return (
       <Layout
         side={<Side activeIndex={menu.actived} changeMenu={(path: string) => actionsMenu.changeMenu({path: path})} menu={menu} />}

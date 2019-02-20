@@ -1,7 +1,7 @@
 import React from "react";
 // import ViewIndex from "../view/index/Index";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { ViewProject } from "../view/project";
+import { ViewProject, ViewProjectEmpty } from "../view/project";
 import { ViewSetting } from "../view/setting";
 import { IRootState } from "../reducer";
 import { ViewCounter } from "../view/counter/Counter";
@@ -16,16 +16,18 @@ export default (props: any) => {
   return (
     <Switch>
       <Route path="/project" component={ViewProject} />
+      <Route path="/empty" component={ViewProjectEmpty} />
       <Route path="/counter" component={ViewCounter} />
       {/* <Route path="/" component={ViewIndex} /> */}
       <Route path="/setting" component={ViewSetting} />
       {/* <Redirect from="/" to="/project" /> */}
       <Route path="/" render={() => {
-        if (state.projects.length > 0) {
-          return <Redirect to="/project" />;
-        } else {
-          return <Redirect to="/project" />;
-        }
+        return <Redirect to="/project" />;
+        // if (state.projects.length > 0) {
+        //   return <Redirect to="/project" />;
+        // } else {
+        //   return <Redirect to="/empty" />;
+        // }
       }} />
     </Switch>
   )

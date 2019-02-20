@@ -8,7 +8,7 @@ import { Dispatch, bindActionCreators } from "redux";
 import { omit } from "../../utils";
 import { RouteComponentProps } from "react-router";
 
-export interface IProps extends RouteComponentProps {
+interface IProps extends RouteComponentProps {
   // intl: Partial<InjectedIntl>;
   intl: NRootState.TIntl;
   projects: NRootState.IProjectState;
